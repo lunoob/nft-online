@@ -11,7 +11,7 @@ interface CacheRef {
     curLayer: string
 }
 interface Layer {
-    id: number
+    id: number | string
     title: string
     images: {
         name: string
@@ -21,6 +21,17 @@ interface Layer {
 }
 
 const defaultSize = 350
+
+// 创建自增 id
+const increaseId = () => {
+    let idx = 0
+    return () => {
+        idx += 1
+        return idx
+    }
+}
+
+const createId = increaseId()
 
 function App() {
     const [isCreate, setIsCreate] = useState(false)
@@ -96,11 +107,11 @@ function App() {
     // 创建图层
     const createLayer = useCallback((title: string) => {
         return {
-            id: layers.length + 1,
+            id: uniqueId(`${+new Date()}`),
             title,
             images: []
         }
-    }, [layers])
+    }, [])
 
     // 设置默认 active item
     const setActiveItem = useCallback((layer) => {
@@ -170,7 +181,7 @@ function App() {
         }
         if (type === 'delete') {
             const [layerId, name] = event.target.dataset.name.split('-')
-            return onDeleteImage(+layerId, name)
+            return onDeleteImage(layerId, name)
         }
         if (type === 'active') {
             const [layerId, name] = event.target.dataset.name.split('-')
@@ -235,7 +246,7 @@ function App() {
         let item: any = null
 
         if (isDir) {
-            const defaultTitle = cacheRef.current.curLayer || 'untitled'
+            const defaultTitle = cacheRef.current.curLayer || `untitled-${createId()}`
             item = createLayer(defaultTitle)
             simpleCloneLayers.push(item)
             cacheRef.current.curLayer = defaultTitle
@@ -338,7 +349,7 @@ function App() {
                                                     [style.active]: activeMap[layer.id] === image.name
                                                 }
                                             )}
-                                            key={image.name}>
+                                            key={image.id}>
                                             <i
                                                 data-type="delete"
                                                 data-name={`${layer.id}-${image.name}`}
