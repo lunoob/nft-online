@@ -1,0 +1,162 @@
+.layers {
+    display: flex;
+    width: 100%;
+    height: calc(100vh - 450px);
+    border: 1px solid slategrey;
+    overflow: auto;
+    box-sizing: border-box;
+}
+.layers .dragArea {
+    flex-shrink: 0;
+}
+.layers .layerItem {
+    flex-shrink: 0;
+    width: 300px;
+    height: 100%;
+    display: inline-block;
+    text-align: center;
+    box-sizing: border-box;
+    border-right: 1px solid slategray;
+}
+.layers .layerItem.addLayer {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+.layers .layerItem .addLayerButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 500;
+    height: 90%;
+    width: 90%;
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #333;
+    cursor: pointer;
+}
+.layerItem .addLayerButton:hover {
+    color: saddlebrown;
+    border: 1px solid saddlebrown;
+}
+.layers .layerItem:last-child {
+    border: none;
+}
+.layerItem .addNew {
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    width: 200px;
+    margin: 20px auto;
+    font-weight: 500;
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #333;
+    cursor: pointer;
+}
+.layerItem .addNew:hover {
+    color: saddlebrown;
+    border: 1px solid saddlebrown;
+}
+.layerItem .layerTitle {
+    margin: 0;
+    height: 50px;
+    line-height: 50px;
+    cursor: move;
+}
+.layerItem .layerTitle .titleValue {
+    display: inline-block;
+    max-width: 8em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.layerTitle .layerTitleIcon {
+    margin-left: 8px;
+    vertical-align: top;
+    cursor: pointer;
+}
+.layerItem .layerList {
+    width: 100%;
+    height: calc(100% - 50px);
+    overflow: auto;
+}
+.layerItem .layerSources {
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.layerSources .sourceItem {
+    position: relative;
+    height: 200px;
+    width: 200px;
+    margin: 20px auto 0;
+    cursor: pointer;
+    box-sizing: border-box;
+    border: 2px solid #e7e7e7;
+    user-select: none;
+}
+.layerSources .sourceItem:hover {
+    border-color: saddlebrown;
+}
+.layerSources .sourceItem.active {
+    border-color: saddlebrown;
+}
+.layerSources .sourceItem img {
+    height: 100%;
+    width: 100%;
+}
+
+.sourceItem .deleteIcon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, .5);
+    padding: 4px;
+}
+.sourceItem .deleteIcon:hover {
+    background-color: rgba(255, 255, 255, .8);
+}
+.sourceItem .deleteIcon .icon {
+    font-size: 14px;
+}
+.updateSize {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 25px 0;
+}
+.updateSize .height {
+    margin-left: 20px;
+}
+.updateSize label {
+    margin-right: 8px;
+}
+.updateSize .button {
+    padding: 2px 10px;
+    border: 1px solid #333;
+    cursor: pointer;
+    margin-left: 12px;
+}
+.updateSize .button:hover {
+    color: saddlebrown;
+    border-color: saddlebrown;
+}
+.view {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 20px;
+}
+.view .drawBoard {
+    margin: 0 auto;
+    background-color: silver;
+    border: 1px solid silver;
+}
+.fileInput {
+    position: fixed;
+    top: -100vh;
+    left: -100vw;
+    visibility: hidden;
+}

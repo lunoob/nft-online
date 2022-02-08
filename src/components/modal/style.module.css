@@ -1,0 +1,46 @@
+.mask {
+    background-color: rgba(0, 0, 0, 0.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 98;
+}
+.lineModal {
+    width: 350px;
+    position: fixed;
+    top: 100px;
+    left: 50%;
+    margin-left: -175px;
+    background-color: #fff;
+    border: 1px solid #333;
+    padding: 30px;
+    border-radius: 2px;
+    z-index: 99;
+}
+
+.closeIcon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+.closeIcon:hover {
+    opacity: .3;
+}
+
+@keyframes slideInDown {
+    from {
+        transform: translate3d(0, -100%, 0);
+        visibility: visible;
+    }
+
+    to {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+.slideInDown {
+    animation: slideInDown 300ms ease;
+}

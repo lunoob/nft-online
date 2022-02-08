@@ -1,0 +1,53 @@
+.modal {
+    width: 100%;
+    box-sizing: border-box;
+}
+.modal .title {
+    margin-top: 0;
+}
+.modal .inputEl {
+    width: 100%;
+    outline: none;
+    border: 1px solid #333;
+    padding: 10px 15px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+.modal .inputEl:focus {
+    border-color: saddlebrown;
+}
+.modal .footer {
+    width: 100%;
+    margin-top: 40px;
+    text-align: right;
+}
+.modal .footer .button {
+    display: inline-block;
+    width: 120px;
+    height: 33px;
+    line-height: 33px;
+    text-align: center;
+    cursor: pointer;
+}
+.modal .footer .confirm {
+    border: 1px solid #333;
+    margin-right: 12px;
+}
+.modal .footer .confirm:hover {
+    color: saddlebrown;
+    border-color: saddlebrown;
+}
+.modal .footer .delete {
+    color: rgb(244, 79, 79);
+    border: 1px solid rgb(244, 79, 79);
+    cursor: pointer;
+}
+.modal .footer .delete:hover {
+    color: red;
+    border-color: red;
+}
+.errorMsg {
+    display: inline-block;
+    margin: 8px 0 0;
+    color: rgb(244, 79, 79);
+}
