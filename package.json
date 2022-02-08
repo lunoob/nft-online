@@ -22,7 +22,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "gitee": "git push main",
+    "gitee": "git push",
     "github": "git push github main",
     "dev": "react-app-rewired start",
     "build": "react-app-rewired build",
