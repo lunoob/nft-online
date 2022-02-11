@@ -2,6 +2,7 @@ import { useState, useRef, useCallback } from 'react'
 import { remove, uniqueId } from 'lodash'
 import { useMount, useUpdateEffect } from 'ahooks'
 import { ReactSortable } from "react-sortablejs"
+import { downloadFile, base64ToBlob } from '@/helpers/utilies'
 import EditModal, { EditModalIns } from '@/components/edit_modal'
 import classNames from 'classnames'
 import style from './App.module.css'
@@ -39,6 +40,7 @@ function App() {
     const [activeMap, setActiveMap] = useState<any>({})
     const [canvasSize, setCanvasSize] = useState<number>(defaultSize)
     const editModalRef = useRef<EditModalIns>()
+    const canvasRef = useRef<any>()
     const fileInputRef = useRef<any>()
     const dirFileInputRef = useRef<any>()
     const sizeInputRef = useRef<any>()
@@ -303,9 +305,16 @@ function App() {
         }
     }, [])
 
+    // 导出图片
+    const outputPhoto = useCallback(() => {
+        downloadFile(
+            base64ToBlob(canvasRef.current.toDataURL("image/png")),
+            'untitled'
+        )
+    }, [])
+
     useMount(() => {
-        const canvas = document.getElementById('nft-board') as any
-        cacheRef.current.ctx = canvas!.getContext('2d')
+        cacheRef.current.ctx = canvasRef.current!.getContext('2d')
 
         // 设置 dirFileInput attribute
         ;(dirFileInputRef.current as HTMLElement).setAttribute('webkitdirectory', '')
@@ -386,9 +395,11 @@ function App() {
                 </div>
                 <div className={style.button} onClick={onChangeCanvasSize('set')}>set</div>
                 <div className={style.button} onClick={onChangeCanvasSize('reset')}>reset</div>
+                <div className={style.button} onClick={outputPhoto}>create</div>
             </div>
             <div className={style.view}>
                 <canvas
+                    ref={canvasRef}
                     id="nft-board"
                     height={`${canvasSize}px`}
                     width={`${canvasSize}px`}
